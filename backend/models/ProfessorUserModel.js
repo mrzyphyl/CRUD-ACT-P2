@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
         required: [true, 'Please add your Last Name']
     },
     Subjects: {
-        type: String,
+        type: [String],
         required: [true, 'Please add your Age']
     },
     Department: {

@@ -4,7 +4,7 @@ const professorUser = require('../models/ProfessorUserModel')
 //Get Student User
 //@access Public
 const getProfessorUser = asyncHandler (async (req, res) => {
-    const user = await studentUser.find({studentUser})
+    const user = await professorUser.find({professorUser})
     res.status(200).json(user)
 })
 
@@ -26,7 +26,7 @@ const postProfessorUser = asyncHandler (async (req, res) => {
         throw new Error('User already exists')
     }
 
-    const profUser = await studentUser.create({
+    const profUser = await professorUser.create({
         FirstName,
         LastName,
         Subjects,
