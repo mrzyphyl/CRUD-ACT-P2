@@ -53,7 +53,7 @@ const postProfessorUser = asyncHandler (async (req, res) => {
 const updateProfessorUser = asyncHandler (async (req, res) => {
     const profUser = await professorUser.findById(req.params.id)
 
-    if(!studUser){
+    if(!profUser){
         res.status(400)
         throw new Error('User no found')
     }
