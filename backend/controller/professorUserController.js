@@ -80,10 +80,28 @@ const deltProfessorUser = asyncHandler (async (req, res) => {
     res.status(200).json({ id: req.params.id})
 })
 
+//Delete Multiple Student User
+//@access Public
+const deltMultiProfessorUser = asyncHandler (async (req, res) => {
+    const profUser = await professorUser.findById(req.params.id)
+
+    if(!profUser){
+        res.status(400)
+        throw new Error('User no found')
+    }
+
+    await profUser.deleteOne()
+
+    res.status(200).json({ id: req.params.id})
+})
+
+
+
 
 module.exports = {
     getProfessorUser,
     postProfessorUser,
     updateProfessorUser,
-    deltProfessorUser
+    deltProfessorUser,
+    deltMultiProfessorUser
 }
