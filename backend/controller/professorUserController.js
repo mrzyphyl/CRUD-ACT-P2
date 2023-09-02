@@ -8,6 +8,13 @@ const getProfessorUser = asyncHandler (async (req, res) => {
     res.status(200).json(user)
 })
 
+//Get One Student User
+//@access Public
+const getOneProfessorUser = asyncHandler (async (req, res) => {
+    const user = await professorUser.find({professorUser})
+    res.status(200).json(user)
+})
+
 //Get Multi Student User
 //@access Public
 const getMultiProfessorUser = asyncHandler (async (req, res) => {
@@ -107,6 +114,7 @@ const deltMultiProfessorUser = asyncHandler (async (req, res) => {
 
 module.exports = {
     getProfessorUser,
+    getOneProfessorUser,
     getMultiProfessorUser,
     postProfessorUser,
     updateProfessorUser,

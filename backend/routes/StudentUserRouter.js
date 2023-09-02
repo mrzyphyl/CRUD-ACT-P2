@@ -5,12 +5,13 @@ const {
     deltStudentUser, 
     postStudentUser, 
     updateStudentUser,
-    getMultiStudentUser
+    getMultiStudentUser,
+    getOneStudentUser
 } = require('../controller/studentUserController')
 
 router.route('/').get(getStudentUser).post(postStudentUser)
 
-router.route('/:id').put(updateStudentUser).delete(deltStudentUser)
+router.route('/:id').put(updateStudentUser).delete(deltStudentUser).get(getOneStudentUser)
 
 router.route('/:ids').delete(deltStudentUser).get(getMultiStudentUser)
 

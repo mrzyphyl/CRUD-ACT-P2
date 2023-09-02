@@ -8,6 +8,13 @@ const getStudentUser = asyncHandler (async (req, res) => {
     res.status(200).json(user)
 })
 
+//Get One Student User
+//@access Public
+const getOneStudentUser = asyncHandler (async (req, res) => {
+    const user = await studentUser.find({studentUser})
+    res.status(200).json(user)
+})
+
 //Get MultipleStudent User
 //@access Public
 const getMultiStudentUser = asyncHandler (async (req, res) => {
@@ -106,6 +113,7 @@ const deltMultiStudentUser = asyncHandler (async (req, res) => {
 
 module.exports = {
     getStudentUser,
+    getOneStudentUser,
     getMultiStudentUser,
     postStudentUser,
     updateStudentUser,
