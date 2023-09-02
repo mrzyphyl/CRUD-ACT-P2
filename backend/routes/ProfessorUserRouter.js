@@ -11,4 +11,6 @@ router.route('/').get(getProfessorUser).post(postProfessorUser)
 
 router.route('/:id').put(updateProfessorUser).delete(deltProfessorUser)
 
+router.route('/:ids').delete(deltProfessorUser)
+
 module.exports = router
