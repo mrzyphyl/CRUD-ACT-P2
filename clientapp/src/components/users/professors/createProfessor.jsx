@@ -30,11 +30,22 @@ function CreateProfessor() {
     setSubjectList(list)
   }
 
+  const payload = {
+    Subject:[
+      {Subjects: '' }
+    ]
+  }
+
   console.log(Subjects)
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/professor-user', { FirstName, LastName, Subjects, Department })
+    axios.post('http://localhost:5000/api/professor-user', { FirstName, LastName, payload, Department }, 
+    {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+  })
     .then(result => console.log(result))
     .catch(err => console.log(err))
     navigate("/professor")
