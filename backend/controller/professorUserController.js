@@ -1,28 +1,34 @@
 const asyncHandler = require('express-async-handler')
 const professorUser = require('../models/ProfessorUserModel')
 
-//Get Student User
+//Get Professor User
 //@access Public
 const getProfessorUser = asyncHandler (async (req, res) => {
     const user = await professorUser.find({professorUser})
     res.status(200).json(user)
 })
 
-//Get One Student User
+//Get One Professor User
 //@access Public
 const getOneProfessorUser = asyncHandler (async (req, res) => {
-    const user = await professorUser.find({professorUser})
-    res.status(200).json(user)
+    const profUser = await professorUser.findById(req.params.id)
+
+    if(!profUser){
+        res.status(400)
+        throw new Error('User no found')
+    }
+    
+    res.status(200).json(profUser)
 })
 
-//Get Multi Student User
+//Get Multi Professor User
 //@access Public
 const getMultiProfessorUser = asyncHandler (async (req, res) => {
     const user = await professorUser.find({professorUser})
     res.status(200).json(user)
 })
 
-//Post Student User
+//Post Professor User
 //@access Public
 const postProfessorUser = asyncHandler (async (req, res) => {
     const { FirstName, LastName, Subjects, Department } = req.body
@@ -62,7 +68,7 @@ const postProfessorUser = asyncHandler (async (req, res) => {
     }
 })
 
-//Update Student User
+//Update Professor User
 //@access Public
 const updateProfessorUser = asyncHandler (async (req, res) => {
     const profUser = await professorUser.findById(req.params.id)
@@ -79,7 +85,7 @@ const updateProfessorUser = asyncHandler (async (req, res) => {
     res.status(200).json(updatedUser)
 })
 
-//Delete Student User
+//Delete Professor User
 //@access Public
 const deltProfessorUser = asyncHandler (async (req, res) => {
     const profUser = await professorUser.findById(req.params.id)
@@ -94,7 +100,7 @@ const deltProfessorUser = asyncHandler (async (req, res) => {
     res.status(200).json({ id: req.params.id})
 })
 
-//Delete Multiple Student User
+//Delete Multiple Professor User
 //@access Public
 const deltMultiProfessorUser = asyncHandler (async (req, res) => {
     const profUser = await professorUser.findById(req.params.id)
@@ -104,7 +110,7 @@ const deltMultiProfessorUser = asyncHandler (async (req, res) => {
         throw new Error('User no found')
     }
 
-    await profUser.deleteOne()
+    await profUser.deleteMany()
 
     res.status(200).json({ id: req.params.id})
 })

@@ -11,8 +11,14 @@ const getStudentUser = asyncHandler (async (req, res) => {
 //Get One Student User
 //@access Public
 const getOneStudentUser = asyncHandler (async (req, res) => {
-    const user = await studentUser.find({studentUser})
-    res.status(200).json(user)
+    const studUser = await studentUser.findById(req.params.id)
+
+    if(!studUser){
+        res.status(400)
+        throw new Error('User no found')
+    }
+    
+    res.status(200).json(studUser)
 })
 
 //Get MultipleStudent User
@@ -96,7 +102,7 @@ const deltStudentUser = asyncHandler (async (req, res) => {
 })
 
 
-//Delete Student User
+//Delete Multiple Student User
 //@access Public
 const deltMultiStudentUser = asyncHandler (async (req, res) => {
     const studUser = await studentUser.findById(req.params.id)
@@ -106,7 +112,7 @@ const deltMultiStudentUser = asyncHandler (async (req, res) => {
         throw new Error('User no found')
     }
 
-    await studUser.deleteOne()
+    await studUser.deleteMany()
 
     res.status(200).json({ id: req.params.id})
 })
